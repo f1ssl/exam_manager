@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -10,7 +9,8 @@ import { PrivateComponent } from './../login/private.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: PrivateComponent},
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'prefix'}
 ];
 
 @NgModule({
@@ -21,7 +21,6 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    NgbModule.forRoot(),
     FormsModule,
     RouterModule.forRoot(
       appRoutes

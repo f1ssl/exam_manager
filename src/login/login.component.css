@@ -1,0 +1,14 @@
+.form-login {
+    background-color: #dedede;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.panel-title {
+    text-align: center;
+}
+
+.full-width {
+    display: block;
+    width: 100%;
+}

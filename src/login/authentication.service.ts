@@ -8,8 +8,8 @@ export class User {
 }
 
 const users = [
-  new User('admin@admin.com', '123'),
-  new User('user1@gmail.com', '123')
+  new User('student', 'student'),
+  new User('teacher', 'teacher')
 ];
 
 @Injectable()
@@ -20,14 +20,14 @@ export class AuthenticationService {
 
   logout() {
     localStorage.removeItem('user');
-    this._router.navigate(['Login']);
+    this._router.navigate(['login']);
   }
 
   login(user) {
     const authenticatedUser = users.find(u => u.email === user.email);
     if (authenticatedUser && authenticatedUser.password === user.password) {
       localStorage.setItem('user', authenticatedUser.toString());
-      this._router.navigate(['Home']);
+      this._router.navigate(['home']);
       return true;
     }
     return false;
@@ -36,7 +36,7 @@ export class AuthenticationService {
 
    checkCredentials() {
     if (localStorage.getItem('user') === null) {
-        this._router.navigate(['Login']);
+        this._router.navigate(['login']);
     }
   }
 }
