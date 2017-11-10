@@ -1,0 +1,28 @@
+<tabset>
+    <tab heading='Prüfungsübersicht'>
+        <form #examOverview="ngForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <h3>Prüfungsübersicht</h3>
+                <table id="tblExams" class="responstable">
+                    <tr>
+                        <th>Prüfungsbezeichnung</th>
+                        <th>Notenmeldungen</th>
+                        <th>Prüfungsdatum</th>
+                    </tr>
+                    <tr *ngFor="let exam of exams">
+                            <td>{{exam.bezeichnung}}</td>
+                            <td></td>
+                            <td>{{exam.datum}}</td>
+                        </ng-container>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="form-group" style="text-align: right">
+                <button type="submit" class="btn btn-primary">Speichern
+                    <span *ngIf="saving" class="fa fa-spinner fa-spin"></span>
+                </button>
+            </div>
+        </form>
+    </tab>
+</tabset>

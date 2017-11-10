@@ -1,0 +1,84 @@
+<tabset>
+    <tab heading='Prüfungsverwaltung'>
+        <form #exams="ngForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <h3>Mögliche Prüfungen</h3>
+                <table id="tblPossibleExams" class="responstable">
+                    <tr>
+                        <th class="fa fa-check"></th>
+                        <th>Prüfungsbezeichnung</th>
+                        <th>Semester</th>
+                        <th>Kreditpunkte</th>
+                        <th>Versuch</th>
+                        <th>Prüfer</th>
+                        <th>Prüfungsdatum</th>
+                    </tr>
+                    <tr *ngFor="let exam of possibleExams">
+                        <ng-container *ngIf="exam.check === false">
+                            <td>
+                                <input [(ngModel)]="exam.check" type="checkbox" id="examCheck" name="examCheck" #examCheck style="display: inline-block;"
+                                />
+                            </td>
+                            <td>{{exam.name}}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </ng-container>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="form-group">
+                <h3>Angemeldete Prüfungen</h3>
+                <table id="tblRegisteredExams" class="responstable">
+                    <tr>
+                        <th class="fa fa-check"></th>
+                        <th>Prüfungsbezeichnung</th>
+                        <th>Semester</th>
+                        <th>Kreditpunkte</th>
+                        <th>Versuch</th>
+                        <th>Prüfer</th>
+                        <th>Prüfungsdatum</th>
+                    </tr>
+                    <tr *ngFor="let exam of possibleExams">
+                        <ng-container *ngIf="exam.check === true">
+                            <td>
+                                <input [(ngModel)]="exam.check" type="checkbox" id="examCheck" name="examCheck" #examCheck style="display: inline-block;"
+                                />
+                            </td>
+                            <td>{{exam.name}}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </ng-container>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="form-group" style="text-align: right">
+                <button type="submit" class="btn btn-primary">Speichern
+                    <span *ngIf="saving" class="fa fa-spinner fa-spin"></span>
+                </button>
+            </div>
+        </form>
+    </tab>
+    <tab heading='Stammdaten'>
+        <form #data="ngForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <h3>Heimatadresse</h3>
+                <div class="col-xs-6">
+                    <!-- <input type="text" name="firstname" #firstname [(ngModel)]="student.firstname" /> -->
+                </div>
+            </div>
+        </form>
+    </tab>
+    <tab heading='Notenübersicht'>
+        <form #grades="ngForm" (ngSubmit)="onSubmit()">
+
+        </form>
+    </tab>
+</tabset>
