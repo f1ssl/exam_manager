@@ -13,19 +13,17 @@
                         <th>Prüfer</th>
                         <th>Prüfungsdatum</th>
                     </tr>
-                    <tr *ngFor="let exam of possibleExams">
-                        <ng-container *ngIf="exam.check === false">
-                            <td>
-                                <input [(ngModel)]="exam.check" type="checkbox" id="examCheck" name="examCheck" #examCheck style="display: inline-block;"
-                                />
-                            </td>
-                            <td>{{exam.name}}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </ng-container>
+                    <tr *ngFor="let exam of possibleExams; let i = index">
+                        <td>
+                            <input [(ngModel)]="exam.check" type="checkbox" name="pos_exam_{{i}}" style="display: inline-block;"
+                            />
+                        </td>
+                        <td>{{exam.name}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                 </table>
             </div>
@@ -42,19 +40,17 @@
                         <th>Prüfer</th>
                         <th>Prüfungsdatum</th>
                     </tr>
-                    <tr *ngFor="let exam of possibleExams">
-                        <ng-container *ngIf="exam.check === true">
-                            <td>
-                                <input [(ngModel)]="exam.check" type="checkbox" id="examCheck" name="examCheck" #examCheck style="display: inline-block;"
-                                />
-                            </td>
-                            <td>{{exam.name}}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </ng-container>
+                    <tr *ngFor="let exam of registeredExams">
+                        <td>
+                            <input [(ngModel)]="exam.check" type="checkbox" name="reg_exam_{{i}}" style="display: inline-block;"
+                            />
+                        </td>
+                        <td>{{exam.name}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                 </table>
             </div>
@@ -68,17 +64,175 @@
     </tab>
     <tab heading='Stammdaten'>
         <form #data="ngForm" (ngSubmit)="onSubmit()">
+            <h3>Heimatadresse</h3>
             <div class="form-group">
-                <h3>Heimatadresse</h3>
-                <div class="col-xs-6">
-                    <!-- <input type="text" name="firstname" #firstname [(ngModel)]="student.firstname" /> -->
+                <div class="form-group">
+                    <div class="form-group col-xs-4">
+                        <label>Matrikel Nummer</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-id-card"></i>
+                            </span>
+                            <input type="number" class="form-control" name="id" #id [(ngModel)]="student.mat_nr" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <label>Benutzername</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-user"></i>
+                            </span>
+                            <input type="text" class="form-control" name="username" #username [(ngModel)]="student.username" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <label>Passwort</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-key"></i>
+                            </span>
+                            <input type="text" class="form-control" name="password" #password [(ngModel)]="login.password" />
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="form-group col-xs-4">
+                        <label>Vorname</label>
+                        <input type="text" class="form-control" name="firstname" #firstname [(ngModel)]="student.vorName" />
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <label>Nachname</label>
+                        <input type="text" class="form-control" name="lastname" #lastname [(ngModel)]="student.nachName" />
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <label>Geburtsname</label>
+                        <input type="text" class="form-control" name="birthname" #birthname [(ngModel)]="student.gebName" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group col-xs-4">
+                        <label>Strasse</label>
+                        <input type="text" class="form-control" name="street" #street [(ngModel)]="student.strasse" />
+                    </div>
+                    <div class="form-group col-xs-2">
+                        <label>Nr.</label>
+                        <input type="number" class="form-control" name="houseNumber" #houseNumber [(ngModel)]="student.hausNr" />
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label>Postleitzahl</label>
+                        <input type="text" class="form-control" name="plz" #plz [(ngModel)]="student.plz" />
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label>Ort</label>
+                        <input type="text" class="form-control" name="city" #city [(ngModel)]="student.ort" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group col-xs-6">
+                        <label>Geburtsdatum</label>
+                        <input type="text" class="form-control" name="birthDate" #birthDate [ngModel]="student.gebDatum | date: 'dd.MM.yyyy'" readonly
+                        />
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label>Geburtsort</label>
+                        <input type="text" class="form-control" name="gebOrt" #gebOrt [(ngModel)]="student.gebOrt" readonly />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group col-xs-6">
+                        <label>Telefonnummern</label>
+                        <div *ngFor="let phone of student.telefonNummern; let i = index" class="pb-3 input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-phone fa-fw"></i>
+                            </span>
+                            <input type="text" class="form-control" name="phone-{{i}}" [(ngModel)]="phone.phoneNumber" />
+                            <span class="input-group-addon">
+                                <i class="fa fa-minus-circle fa-fw pointer-cursor" (click)="student.deletePhoneNumber(phone)"></i>
+                            </span>
+                        </div>
+                        <label class="add-label" (click)="student.addPhoneNumber()">+ Weitere Telefonnummer</label>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label>E-Mail Adressen</label>
+                        <div *ngFor="let mail of student.mailAdressen; let i = index" class="pb-3 input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-envelope fa-fw"></i>
+                            </span>
+                            <input type="text" class="form-control" name="mail-{{i}}" [(ngModel)]="mail.mailAddress" />
+                            <span class="input-group-addon">
+                                <i class="fa fa-minus-circle fa-fw pointer-cursor" (click)="student.deleteMailAddress(mail)"></i>
+                            </span>
+                        </div>
+                        <label class="add-label" (click)="student.addMailAddress()">+ Weitere E-Mail Adresse</label>
+                    </div>
+                </div>
+            </div>
+            <h3>Semesteradresse</h3>
+            <div class="form-group">
+                <div class="form-group col-xs-4">
+                    <label>Strasse</label>
+                    <input type="text" class="form-control" name="street" #street [(ngModel)]="student.strasse" />
+                </div>
+                <div class="form-group col-xs-2">
+                    <label>Nr.</label>
+                    <input type="number" class="form-control" name="houseNumber" #houseNumber [(ngModel)]="student.hausNr" />
+                </div>
+                <div class="form-group col-xs-3">
+                    <label>Postleitzahl</label>
+                    <input type="text" class="form-control" name="plz" #plz [(ngModel)]="student.plz" />
+                </div>
+                <div class="form-group col-xs-3">
+                    <label>Ort</label>
+                    <input type="text" class="form-control" name="city" #city [(ngModel)]="student.ort" />
+                </div>
+            </div>
+            <h3>Studieninformationen</h3>
+            <div class="form-group">
+                <div class="form-group col-xs-6">
+                    <label>Studiengang</label>
+                    <input type="text" class="form-control" name="studycourse" #studycourse readonly [ngModel]="student.getStudyCourseName()"
+                    />
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Studienbeginn</label>
+                    <input type="text" class="form-control" name="studystart" #studystart readonly [ngModel]="student.studienbeginn | date: 'dd.MM.yyyy'"
+                    />
+                </div>
+            </div>
+            <div class="form-group" style="text-align: right">
+                <button type="submit" class="btn btn-primary">Speichern
+                    <span *ngIf="saving" class="fa fa-spinner fa-spin"></span>
+                </button>
             </div>
         </form>
     </tab>
     <tab heading='Notenübersicht'>
         <form #grades="ngForm" (ngSubmit)="onSubmit()">
-
+            <div class="form-group">
+                <h3>Notenliste</h3>
+                <table id="tblDoneExams" class="responstable">
+                    <tr>
+                        <th>Prüfungsbezeichnung</th>
+                        <th>Semester</th>
+                        <th>Note</th>
+                        <th>Status</th>
+                        <th>Kreditpunkte</th>
+                        <th>Versuch</th>
+                        <th>Prüfungsdatum</th>
+                    </tr>
+                    <tr *ngFor="let exam of doneExams">
+                        <td>{{exam.name}}</td>
+                        <td>{{exam.semester}}</td>
+                        <td>{{exam.grade}}</td>
+                        <td>{{exam.state}}</td>
+                        <td>{{exam.creditpoint}}</td>
+                        <td>{{exam.tries}}</td>
+                        <td>{{exam.date | date: 'dd.MM.yyyy'}}</td>
+                    </tr>
+                </table>
+            </div>
         </form>
     </tab>
 </tabset>

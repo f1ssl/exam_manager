@@ -1,3 +1,116 @@
-<p>
-  management works!
-</p>
+<tabset>
+  <tab heading='Studentenverwaltung'>
+    <form #exams="ngForm" (ngSubmit)="onSubmit()">
+      <div class="form-group mt-5">
+        <button type="submit" class="btn btn-primary">Neuen Studenten anlegen
+          <span *ngIf="saving" class="fa fa-spinner fa-spin"></span>
+        </button>
+      </div>
+      <div class="form-group">
+        <h3>Studentenverwaltung</h3>
+        <table id="tblStudents" class="responstable">
+          <tr>
+            <th>Mat. Nr.</th>
+            <th>Nachname</th>
+            <th>Vorname</th>
+            <th>Kreditpunkte</th>
+            <th>Urkunde</th>
+          </tr>
+          <tr *ngFor="let student of students">
+            <td>{{student.mat_nr}}</td>
+            <td>{{student.firstname}}</td>
+            <td>{{student.lastname}}</td>
+            <td>{{student.creditpoints</td>
+            <td>
+              <button class="btn">Drucken</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </form>
+  </tab>
+  <tab heading='Krankmeldungen'>
+    <form #data="ngForm" (ngSubmit)="onSubmit()">
+      <h3>Krankmeldung verbuchen</h3>
+
+      <div class="form-group" style="text-align: right">
+        <button type="submit" class="btn btn-primary">Speichern
+          <span *ngIf="saving" class="fa fa-spinner fa-spin"></span>
+        </button>
+      </div>
+    </form>
+  </tab>
+  <tab heading='Prüfungsverwaltung'>
+    <form #grades="ngForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <h3>Offene Notenmeldungen</h3>
+        <table id="tblStudents" class="responstable">
+          <tr>
+            <th>Mat. Nr.</th>
+            <th>Nachname</th>
+            <th>Vorname</th>
+            <th>Kreditpunkte</th>
+            <th>Urkunde</th>
+          </tr>
+          <tr *ngFor="let student of students">
+            <td>{{student.mat_nr}}</td>
+            <td>{{student.firstname}}</td>
+            <td>{{student.lastname}}</td>
+            <td>{{student.creditpoints}}</td>
+            <td>
+              <button class="btn">Drucken</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="form-group">
+        <h3>Prüfer zuordnen</h3>
+        <table id="tblExams" class="responstable">
+          <tr>
+            <th>Prüfungsbezeichnung</th>
+            <th>Prüfer</th>
+            <th>Kreditpunkte</th>
+            <th>Prüfungsdatum</th>
+          </tr>
+        </table>
+      </div>
+      <div class="form-group mt-5">
+        <button type="submit" class="btn btn-primary">Speichern
+          <span *ngIf="saving" class="fa fa-spinner fa-spin"></span>
+        </button>
+      </div>
+    </form>
+  </tab>
+  <tab heading='Studiengangsverwaltung'>
+    <form #grades="ngForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <h3>Pflichtmodule</h3>
+        <table id="tblDutyCourse" class="responstable">
+          <tr>
+            <th>Studienmodul</th>
+            <th>Vorleistungen</th>
+            <th>Prüfungsform</th>
+            <th>Vorbedingungen</th>
+            <th>Notengewicht</th>
+            <th>Kreditpunkte</th>
+            <th></th>
+          </tr>
+        </table>
+      </div>
+      <div class="form-group">
+        <h3>Wahlpflichtmodule</h3>
+        <table id="tblObligationCourse" class="responstable">
+          <tr>
+            <th>Studienmodul</th>
+            <th>Vorleistungen</th>
+            <th>Prüfungsform</th>
+            <th>Vorbedingungen</th>
+            <th>Notengewicht</th>
+            <th>Kreditpunkte</th>
+            <th></th>
+          </tr>
+        </table>
+      </div>
+    </form>
+  </tab>
+</tabset>

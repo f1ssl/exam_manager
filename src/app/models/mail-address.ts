@@ -1,5 +1,5 @@
 export class MailAddress {
-    constructor(
+constructor(
         private mailAddress: String
     ) {
         

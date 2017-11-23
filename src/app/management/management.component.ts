@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Student } from '../models/student';
+import { DataService } from '../services/data.service';
+import { Exam } from '../models/exam';
 
 @Component({
   selector: 'app-management',
@@ -7,7 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManagementComponent implements OnInit {
 
-  constructor() { }
+  private students: Array<Student>;
+  private exams: Array<Exam> = new Array<Exam>();
+
+
+  
+  constructor(private _data: DataService) { }
 
   ngOnInit() {
   }

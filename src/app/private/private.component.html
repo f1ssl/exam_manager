@@ -1,12 +1,21 @@
 <div class="home container">
-    <h3>Start</h3>
-    <div *ngIf="role==1">
-        <app-student></app-student>
+    <div class="row">
+        <div class="col-xs-9">
+            <h3>Start</h3>
+        </div>
+        <div class="col-xs-3" style="text-align: right">
+            <button class="btn btn-primary mt-4" (click)="onLogout()">Ausloggen</button>
+        </div>
     </div>
-    <div *ngIf="role==2">
-        <app-academic></app-academic>
-    </div>
-    <div *ngIf="role==3">
-        <app-management></app-management>
+    <div class="row">
+        <div *ngIf="role==1">
+            <app-student></app-student>
+        </div>
+        <div *ngIf="role==2">
+            <app-academic></app-academic>
+        </div>
+        <div *ngIf="role==3">
+            <app-management></app-management>
+        </div>
     </div>
 </div>

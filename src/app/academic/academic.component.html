@@ -5,15 +5,14 @@
                 <h3>Prüfungsübersicht</h3>
                 <table id="tblExams" class="responstable">
                     <tr>
-                        <th>Prüfungsbezeichnung</th>
+                        <th style="width: 70%">Prüfungsbezeichnung</th>
                         <th>Notenmeldungen</th>
                         <th>Prüfungsdatum</th>
                     </tr>
                     <tr *ngFor="let exam of exams">
-                            <td>{{exam.bezeichnung}}</td>
-                            <td></td>
-                            <td>{{exam.datum}}</td>
-                        </ng-container>
+                        <td>{{exam.bezeichnung}}</td>
+                        <td></td>
+                        <td>{{exam.datum}}</td>
                     </tr>
                 </table>
             </div>

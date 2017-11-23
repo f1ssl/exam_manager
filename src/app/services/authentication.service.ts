@@ -1,15 +1,13 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 
-export class User {
-  constructor(
-    public email: string,
-    public password: string) { }
-}
+import { Login } from './../models/login';
 
-const users = [
-  new User('student', 'student'),
-  new User('teacher', 'teacher')
+
+const logins = [
+  new Login('student', 'student', 1),
+  new Login('teacher', 'teacher', 2),
+  new Login('management', 'management', 3)
 ];
 
 @Injectable()
@@ -19,14 +17,14 @@ export class AuthenticationService {
   }
 
   logout() {
-    localStorage.removeItem('user');
+    localStorage.removeItem('login');
     this._router.navigate(['login']);
   }
 
-  login(user) {
-    const authenticatedUser = users.find(u => u.email === user.email);
-    if (authenticatedUser && authenticatedUser.password === user.password) {
-      localStorage.setItem('user', authenticatedUser.toString());
+  login(login) {
+    const authenticatedUser = logins.find(u => u.username === login.username);
+    if (authenticatedUser && authenticatedUser.password === login.password) {
+      localStorage.setItem('login', JSON.stringify(login));
       this._router.navigate(['home']);
       return true;
     }
@@ -35,8 +33,9 @@ export class AuthenticationService {
   }
 
    checkCredentials() {
-    if (localStorage.getItem('user') === null) {
+    if (localStorage.getItem('login') === null) {
         this._router.navigate(['login']);
     }
+    return localStorage.getItem('login');
   }
 }
