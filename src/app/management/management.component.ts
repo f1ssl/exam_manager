@@ -20,4 +20,12 @@ export class ManagementComponent implements OnInit {
   ngOnInit() {
   }
 
+  onMustModulesSubmit() {
+    console.log("Pflichtmodule gespeichert!");
+  }
+
+  onMustChooseModulesSubmit() {
+    console.log("Wahlpflichtmodule gespeichert!");
+  }
+
 }

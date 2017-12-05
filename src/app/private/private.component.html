@@ -8,14 +8,8 @@
         </div>
     </div>
     <div class="row">
-        <div *ngIf="role==1">
-            <app-student></app-student>
-        </div>
-        <div *ngIf="role==2">
-            <app-academic></app-academic>
-        </div>
-        <div *ngIf="role==3">
-            <app-management></app-management>
-        </div>
+        <app-student *ngIf="role==1" style="width: 100%"></app-student>
+        <app-academic *ngIf="role==2" style="width: 100%"></app-academic>
+        <app-management *ngIf="role==3" style="width: 100%"></app-management>
     </div>
 </div>
